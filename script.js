@@ -1,10 +1,12 @@
 
 // const divImg = document.getElementById("img");
 // const imgItem = document.createElement("img");
-let url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4cc2a6e2419deebfe86eca026cfda157&safe_search=1&format=json&nojsoncallback=?&text=bmw&page=1&per_page=10"
+let url = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4cc2a6e2419deebfe86eca026cfda157&safe_search=1&format=json&nojsoncallback=?&text=bmw&page=1&per_page=50"
 loadMoreContent();
 function loadMoreContent() {
+    let secretWord ="cats";
 
+    
     async function getData() {
         const res = await fetch(url);
         const data = await res.json();
@@ -12,6 +14,8 @@ function loadMoreContent() {
         // printPost(data[random(data)])
         // imgItem.textContent = ; // Замените этот текст на реальный контент
         // debugger
+        for(i=1;i< Object.keys(data).length;i++){
+    url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4cc2a6e2419deebfe86eca026cfda157&safe_search=1&format=json&nojsoncallback=?&text=${secretWord}&page=${i}&per_page=10`
         data.photos.photo.forEach(item => {
             // document.body.innerHTML += '<hr/><pre>' + JSON.stringify(element) + '</pre>';
 
@@ -40,11 +44,13 @@ function loadMoreContent() {
             a.appendChild(img);
             const container = document.getElementById("container");
             container.appendChild(a);
-
+          
         });
-        // divImg.appendChild(imgItem);
     }
-    getData();
+        // divImg.appendChild(imgItem);
+  
+    }
+getData();
 
 }
 
