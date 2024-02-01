@@ -5,7 +5,20 @@ let container = document.getElementById("container");
 let url = "";
 let secretWord= document.getElementById("searchIn").value ;
 let input = document.getElementById("searchBtn");
+let one = document.getElementById("one");
+let two = document.getElementById("two");
+let three= document.getElementById("three")
 input.addEventListener("click", searchClic);
+one.addEventListener("click", searchClicStatic);
+two.addEventListener("click", searchClicStatic);
+three.addEventListener("click", searchClicStatic);
+
+function searchClicStatic(){
+    document.querySelectorAll('#container a').forEach(e => e.remove());
+    secretWord =this.textContent;
+    document.getElementById("searchIn").value= this.textContent;
+    loadMoreContent();
+    };
 
 function searchClic(){
 // alert( 'Спасибо!' );
@@ -39,7 +52,6 @@ function loadMoreContent() {
 
             // разделяем линией
             // document.body.innerHTML += '<hr/>';
-
             // конструируем URl картинки
             const imgSrc = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_m.jpg';
             const aHref = 'https://www.flickr.com/photos/' + item.owner + '/' + item.id;
@@ -65,11 +77,7 @@ function loadMoreContent() {
 
         });
     }
-    // divImg.appendChild(imgItem);
     getData();
-    // }
-
-
 }
 
 
