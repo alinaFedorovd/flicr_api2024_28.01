@@ -1,8 +1,24 @@
 
 // const divImg = document.getElementById("img");
 // const imgItem = document.createElement("img");
+let container = document.getElementById("container");
 let url = "";
-let secretWord = "cats";
+let secretWord= document.getElementById("searchIn").value ;
+let input = document.getElementById("searchBtn");
+input.addEventListener("click", searchClic);
+
+function searchClic(){
+// alert( 'Спасибо!' );
+        console.log(container);
+//  container.removeChild();
+// container.innerHTML = '';
+document.querySelectorAll('#container a').forEach(e => e.remove());
+secretWord ='';
+ secretWord = document.getElementById("searchIn").value; 
+loadMoreContent();
+};
+
+console.log(secretWord)
 let i = 0;
 loadMoreContent();
 function loadMoreContent() {    
@@ -13,7 +29,7 @@ function loadMoreContent() {
     async function getData() {        
         const res = await fetch(url);
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         // printPost(data[random(data)])
         // imgItem.textContent = ; // Замените этот текст на реальный контент
         // debugger
@@ -44,7 +60,7 @@ function loadMoreContent() {
             const img = document.createElement("img");
             img.src = imgSrc;
             a.appendChild(img);
-            const container = document.getElementById("container");
+            // const container = document.getElementById("container");
             container.appendChild(a);
 
         });
